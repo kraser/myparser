@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	url string = "https://www.123.ru"
+	url string = "http://dns-shop.ru"
 )
 
 func main() {
@@ -21,7 +21,6 @@ func main() {
 	options.Url = url
 	options.CookieFile = "/home/robot/e2.cookie"
 	client := curl.InitCurl(options)
-	//fmt.Println(client)
 	result := client.DoRequest(url)
 	writeHtmlToFile(result)
 }
