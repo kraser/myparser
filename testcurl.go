@@ -5,17 +5,20 @@ import (
 	errs "errorshandler"
 	"fmt"
 	curl "gocurl"
-	"math/rand"
+
+	//"math/rand"
 	"os"
-	"time"
+	//"time"
 )
 
 var (
-	url string = "http://dns-shop.ru"
+	//url string = "http://dns-shop.ru"
+	//url string = "https://www.123.ru"
+	url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+
 	fmt.Println("Hello World!")
 	options := curl.GetOptions()
 	options.Url = url
