@@ -23,6 +23,7 @@ func main() {
 	options.Url = url
 	options.SetTimeout("3s")
 	options.CookieFile = "/home/robot/e2.cookie"
+	options.FollowLocation = false
 	client := curl.InitCurl(options)
 	result := client.DoRequest(url)
 	writeHtmlToFile(result)
@@ -37,3 +38,28 @@ func writeHtmlToFile(html string) {
 	length := len(html)
 	fmt.Println("done", length)
 }
+
+//func newmain() {
+//	myURL := "http://www.jonathanmh.com"
+//	nextURL := myURL
+//	var i int
+//	for i < 100 {
+//		client := &http.Client{
+//			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+//				return http.ErrUseLastResponse
+//			},
+//		}
+//		resp, err := client.Get(nextURL)
+//		if err != nil {
+//			fmt.Println(err)
+//		}
+//		fmt.Println("StatusCode:", resp.StatusCode)
+//		fmt.Println(resp.Request.URL)
+//		if resp.StatusCode == 200 {
+//			fmt.Println("Done!")
+//			break
+//		} else {
+//			nextURL = resp.Header.Get("Location")
+//		}
+//	}
+//}
