@@ -13,8 +13,8 @@ import (
 
 var (
 	//url string = "http://dns-shop.ru"
-	//url string = "https://www.123.ru"
-	url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
+	url string = "http://allprint.local"
+	//url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
 )
 
 func main() {
@@ -22,6 +22,7 @@ func main() {
 	fmt.Println("Hello World!")
 	options := curl.GetOptions()
 	options.Url = url
+	options.SetTimeout("3s")
 	options.CookieFile = "/home/robot/e2.cookie"
 	client := curl.InitCurl(options)
 	result := client.DoRequest(url)
