@@ -12,7 +12,6 @@ import (
 )
 
 var (
-	//url string = "http://dns-shop.ru"
 	url string = "http://allprint.local"
 	//url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
 )
