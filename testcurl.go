@@ -9,11 +9,13 @@ import (
 	//"math/rand"
 	"os"
 	//"time"
+	"logger"
 )
 
 var (
-	url string = "http://allprint.local"
+	//url string = "http://allprint.local"
 	//url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
+	url = "https://httpbin.org/"
 )
 
 func main() {
@@ -21,6 +23,7 @@ func main() {
 	fmt.Println("Hello World!")
 	options := curl.GetOptions()
 	options.Url = url
+	logger.Debug(options.Url)
 	options.SetTimeout("3s")
 	options.CookieFile = "/home/robot/all.cookie"
 	options.FollowLocation = false
