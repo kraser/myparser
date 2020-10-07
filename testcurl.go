@@ -22,8 +22,9 @@ func main() {
 	options := curl.GetOptions()
 	options.Url = url
 	options.SetTimeout("3s")
-	options.CookieFile = "/home/robot/e2.cookie"
+	options.CookieFile = "/home/robot/all.cookie"
 	options.FollowLocation = false
+	options.SetMethod("post")
 	client := curl.InitCurl(options)
 	result := client.DoRequest(url)
 	writeHtmlToFile(result)
