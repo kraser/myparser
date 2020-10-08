@@ -5,11 +5,9 @@ import (
 	errs "errorshandler"
 	"fmt"
 	curl "gocurl"
-
-	//"math/rand"
 	"os"
 	//"time"
-	"logger"
+	//"logger"
 )
 
 var (
@@ -23,14 +21,24 @@ func main() {
 	fmt.Println("Hello World!")
 	options := curl.GetOptions()
 	options.Url = url
-	logger.Debug(options.Url)
 	options.SetTimeout("3s")
 	options.CookieFile = "/home/robot/all.cookie"
 	options.FollowLocation = false
-	options.SetMethod("post")
+	testGetMethod(options)
+}
+
+func makeRequest(options *curl.RequestOptions) {
 	client := curl.InitCurl(options)
-	result := client.DoRequest(url)
+	result := client.DoRequest()
 	writeHtmlToFile(result)
+}
+
+func testGetMethod(options *curl.RequestOptions) {
+	options.Url = url + "get"
+	options.AddQueryParam("id", "myid")
+	options.AddQueryParam("name", "Kate")
+	options.AddQueryParam("action", "fuck")
+	makeRequest(options)
 }
 
 func writeHtmlToFile(html string) {
@@ -42,28 +50,3 @@ func writeHtmlToFile(html string) {
 	length := len(html)
 	fmt.Println("done", length)
 }
-
-//func newmain() {
-//	myURL := "http://www.jonathanmh.com"
-//	nextURL := myURL
-//	var i int
-//	for i < 100 {
-//		client := &http.Client{
-//			CheckRedirect: func(req *http.Request, via []*http.Request) error {
-//				return http.ErrUseLastResponse
-//			},
-//		}
-//		resp, err := client.Get(nextURL)
-//		if err != nil {
-//			fmt.Println(err)
-//		}
-//		fmt.Println("StatusCode:", resp.StatusCode)
-//		fmt.Println(resp.Request.URL)
-//		if resp.StatusCode == 200 {
-//			fmt.Println("Done!")
-//			break
-//		} else {
-//			nextURL = resp.Header.Get("Location")
-//		}
-//	}
-//}
