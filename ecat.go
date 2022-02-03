@@ -1,13 +1,16 @@
-// testcurl.go
+// ecat
 package main
 
 import (
-	errs "errorshandler"
 	"fmt"
-	curl "gocurl"
 	"os"
+
+	errs "github.com/kraser/errorshandler"
+
+	curl "bitbucket.org/kravalsergey/gocurl"
 	//"time"
 	//"logger"
+	goquery "github.com/PuerkitoBio/goquery"
 )
 
 var (
