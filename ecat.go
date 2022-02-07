@@ -26,7 +26,7 @@ func main() {
 	fmt.Println("Hello World!")
 	options := curl.GetOptions()
 	options.Url = url
-	options.SetTimeout("3s")
+	//options.SetTimeout("3s")
 	options.CookieFile = "/home/robot/all.cookie"
 	options.FollowLocation = false
 	testGetMethod(options)
