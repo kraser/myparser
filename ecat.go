@@ -10,13 +10,15 @@ import (
 	curl "bitbucket.org/kravalsergey/gocurl"
 	//"time"
 	//"logger"
+	//"net/http"
+
 	goquery "github.com/PuerkitoBio/goquery"
 )
 
 var (
 	//url string = "http://allprint.local"
 	//url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
-	url = "https://httpbin.org/"
+	url = "https://www.e-katalog.ru"
 )
 
 func main() {
@@ -34,13 +36,16 @@ func makeRequest(options *curl.RequestOptions) {
 	client := curl.InitCurl(options)
 	result := client.DoRequest()
 	writeHtmlToFile(result)
+
 }
 
 func testGetMethod(options *curl.RequestOptions) {
-	options.Url = url + "get"
-	options.AddQueryParam("id", "myid")
-	options.AddQueryParam("name", "Kate")
-	options.AddQueryParam("action", "fuck")
+	/*
+		options.Url = url + "get"
+		options.AddQueryParam("id", "myid")
+		options.AddQueryParam("name", "Kate")
+		options.AddQueryParam("action", "fuck")
+	*/
 	makeRequest(options)
 }
 
@@ -52,4 +57,16 @@ func writeHtmlToFile(html string) {
 	fileHandler.WriteString(html)
 	length := len(html)
 	fmt.Println("done", length)
+	parse(html)
+}
+
+func parse(html string) {
+	nodes, err := goquery.NewDocument(html)
+	errs.ErrorHandle(err)
+	nodes.Find("ul.mainmenu-list").Each(func(i int, s *goquery.Selection) {
+		// For each item found, get the title
+		title := s.Find("a.mainmenu-link").Text()
+		fmt.Printf("Review %d: %s\n", i, title)
+	})
+
 }
