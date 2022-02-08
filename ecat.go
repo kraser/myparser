@@ -75,10 +75,19 @@ func writeHtmlToFile(html string) {
 func parse(html string) {
 	nodes, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	errs.ErrorHandle(err)
-	nodes.Find("ul.mainmenu-list").Each(func(i int, s *goquery.Selection) {
-		// For each item found, get the title
-		title := s.Find("a.mainmenu-link").Text()
-		fmt.Printf("Review %d: %s\n", i, title)
+	nodes.Find("ul.mainmenu-list").Each(traverseTop)
+
+}
+
+func traverseTop(i int, s *goquery.Selection) {
+	// For each item found, get the title
+	anchors := s.Find("a.mainmenu-link")
+	fmt.Printf("Review %d: %s\n", i, anchors)
+	anchors.Each(func(i int, a *goquery.Selection) {
+		href, _ := a.Attr("href")
+
+		logger.Info(href)
+		logger.Info(a.Text())
 	})
 
 }
