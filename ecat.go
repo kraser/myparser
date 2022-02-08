@@ -2,6 +2,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -14,16 +15,26 @@ import (
 	//"net/http"
 
 	goquery "github.com/PuerkitoBio/goquery"
+	"github.com/kraser/logger"
 )
 
 var (
 	//url string = "http://allprint.local"
 	//url string = "https://randomnumbers.ru/generator-anglijskikh-slov"
-	url = "https://www.e-katalog.ru"
+	url     string = "https://www.e-katalog.ru"
+	logMode string
 )
 
-func main() {
+func init() {
+	flag.StringVar(&logMode, "lm", "debug", "режим логгирования")
+	//flag.StringVar(&city, "city", logMode, "город для которого разбирается прайс")
 
+	//logMode = "debug"
+}
+
+func main() {
+	flag.Parse()
+	logger.SetLogLevel(logMode)
 	fmt.Println("Hello World!")
 	options := curl.GetOptions()
 	options.Url = url
