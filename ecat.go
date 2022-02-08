@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	errs "github.com/kraser/errorshandler"
 
@@ -61,7 +62,7 @@ func writeHtmlToFile(html string) {
 }
 
 func parse(html string) {
-	nodes, err := goquery.NewDocument(html)
+	nodes, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	errs.ErrorHandle(err)
 	nodes.Find("ul.mainmenu-list").Each(func(i int, s *goquery.Selection) {
 		// For each item found, get the title
