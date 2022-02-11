@@ -13,6 +13,7 @@ require (
 
 require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
+	github.com/kraser/goprice v0.0.0-00010101000000-000000000000 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
@@ -23,3 +24,5 @@ require (
 replace github.com/kraser/errorshandler => ../errorshandler
 
 replace github.com/kraser/logger => ../logger
+
+replace github.com/kraser/goprice => ../goprice
